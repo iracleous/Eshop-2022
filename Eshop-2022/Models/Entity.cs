@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Eshop_2022.Models
 {
-    public class Order:Entity
-    {   
-        public Customer? Customer { get; set; }
-        public List<Product>? Products { get; set; }
+    public class Entity
+    {
+        public int Id { get; set; }
     }
 }

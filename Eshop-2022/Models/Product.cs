@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Eshop_2022.Models
 {
-    public class Product
+    public class Product:Entity
     {
-        public int Id { get; set; }
         public string? Name { get; set; }
         public DateTime PurchaseDate  { get; set; }
         public decimal Price { get; set; }
-  
     }
 }

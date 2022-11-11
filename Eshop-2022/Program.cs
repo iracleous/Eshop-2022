@@ -7,7 +7,7 @@ Console.WriteLine("My eshop application starts");
 var product = new Product() { Id = 12, Name = "Snack", Price = 1.30m, 
     PurchaseDate = DateTime.Now};
 
-IProductRepository productRepository = new ProductRepository();
-int productId = productRepository.CreateProduct(product);
+IRepository<Product> productRepository = new ProductRepository();
+int productId = productRepository.Create(product);
 
 Console.WriteLine(productId);

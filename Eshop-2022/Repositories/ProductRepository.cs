@@ -7,57 +7,17 @@ using System.Threading.Tasks;
 
 namespace Eshop_2022.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : Repository<Product>
     {
-        private readonly List<Product> _products = new ();
-        private int ProductIndex = 0;
-
-
-        public int CreateProduct(Product product)
+        public override bool Update(int id, Product otherT)
         {
-            product.Id = ProductIndex;
-            ProductIndex++;
-            _products.Add(product);
-            return product.Id;
-        }
-
-        public Product CreateProduct(int productId, string name, decimal price, DateTime purchaseDate)
-        {
-           var product = new Product() { Id = productId, Name = name, Price = price,
-               PurchaseDate = purchaseDate };
-            CreateProduct(product);
-            return product;
-        }
-
-        public bool DeleteProduct(int productId)
-        {  
-            Product? product= ReadProductId(productId);
-            if (product != null) {  
-                _products.Remove(product);
-                return true;
-            }
-           return false;
-        }
-
-        public Product? ReadProductId(int productId)
-        {
-            foreach(Product product in _products)
-            {
-                if (product.Id == productId)
-                    return product;
-            }
-            return null;
-        }
-
-        public bool UpdateProduct(int productId, decimal newPrice)
-        {
-            Product? product = ReadProductId(productId);
+            Product? product = Read(id);
             if (product != null)
             {
-                product.Price = newPrice;
+                product.Price = otherT.Price;
                 return true;
             }
-            return false;    
+            return false;
         }
     }
 }
