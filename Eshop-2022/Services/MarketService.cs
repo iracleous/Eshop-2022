@@ -24,7 +24,7 @@ namespace Eshop_2022.Services
            productRepository.Delete(productId);
         }
 
- public List<Product> BrowseProducts()
+        public List<Product> BrowseProducts()
         {
             return productRepository.Read();
         }
@@ -41,28 +41,61 @@ namespace Eshop_2022.Services
             return true;
         }
 
-
-        public void AddToOrder(int orderId, int productId, int quantity)
+        public int Login(string userName, string password)
         {
-            throw new NotImplementedException();
-        }
-
-       
-
-        public void Checkout(int orderId)
-        {
-            throw new NotImplementedException();
+            return customerRepository.Read(userName,  password);
         }
 
         public int CreateOrder(int customerId)
         {
-            throw new NotImplementedException();
+            Customer? customer = customerRepository.Read(customerId);
+            if (customer == null)
+            {
+                return -1;
+            }
+            var order = new Order()
+            {
+                Customer = customer,
+                Products = new List<Product>(),
+                Created = DateTime.Now
+            };
+            orderRepository.Create(order);
+            return order.Id;
         }
 
-        public int Login(string userName, string password)
+        public bool AddToOrder(int orderId, int productId )
         {
-            throw new NotImplementedException();
+            Order? order = orderRepository.Read(orderId);
+            Product? product = productRepository.Read(productId);
+            if( order!= null && product != null)
+            {
+                order.Products.Add(product);
+                return true;
+            }
+            return false;
         }
+
+          public void Checkout(int orderId)
+        {
+
+            Order? order = orderRepository.Read(orderId);
+            if (order != null)
+            {
+                decimal totalCost = 0m;
+                int productCount = 0;
+                foreach(Product product in order.Products){
+                    productCount++;
+                    totalCost += product.Price;
+                }
+                System.Console.WriteLine($"total cost = {totalCost} " +
+                    $"product count = {productCount}");
+            }
+            Console.WriteLine("The customer has checked out");
+        }
+
+       
+
+       
 
       
 

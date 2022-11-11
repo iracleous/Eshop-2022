@@ -10,5 +10,6 @@ namespace Eshop_2022.Models
     {   
         public Customer? Customer { get; set; }
         public List<Product>? Products { get; set; }
+        public DateTime? Created { get; set; }
     }
 }

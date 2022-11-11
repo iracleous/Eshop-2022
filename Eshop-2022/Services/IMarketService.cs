@@ -1,9 +1,4 @@
 ﻿using Eshop_2022.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eshop_2022.Services
 {
@@ -19,7 +14,7 @@ namespace Eshop_2022.Services
      //   public List<Product> BrowseProducts(string productName);
         public int Login(string userName, string password);
         public int CreateOrder(int customerId);
-        public void AddToOrder(int orderId, int productId, int quantity);
+        public bool AddToOrder(int orderId, int productId );
         public void Checkout(int orderId);
     }
 }
