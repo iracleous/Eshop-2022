@@ -9,7 +9,7 @@ namespace Eshop_2022.Services
         public void RemoveProductFromInventory(int productId);
 
         //user actions
-        public bool Register(string userName, string password);
+        public void Register(string userName, string password);
         public List<Product> BrowseProducts();
      //   public List<Product> BrowseProducts(string productName);
         public int Login(string userName, string password);

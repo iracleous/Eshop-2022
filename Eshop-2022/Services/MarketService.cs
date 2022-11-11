@@ -1,4 +1,5 @@
-﻿using Eshop_2022.Models;
+﻿using Eshop_2022.Exceptions;
+using Eshop_2022.Models;
 using Eshop_2022.Repositories;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace Eshop_2022.Services
         private readonly ProductRepository productRepository = new ProductRepository();
         private readonly CustomerRepository customerRepository = new CustomerRepository();
         private readonly OrderRepository orderRepository = new OrderRepository();
+
+
 
         public void AddProductToInventory(Product product)
         {
@@ -29,16 +32,15 @@ namespace Eshop_2022.Services
             return productRepository.Read();
         }
 
-        public bool Register(string userName, string password)
+        public void Register(string userName, string password)
         {
             if (customerRepository.ExistsUsername(userName))
             {
-                return false;
+                throw new MarketException(MarketExceptions.DUPLICATE_CUSTOMER);
             }
             Customer customer = new() { UserName=userName, 
                 Password=password, RegistrationDate = DateTime.Now};
             customerRepository.Create(customer);
-            return true;
         }
 
         public int Login(string userName, string password)

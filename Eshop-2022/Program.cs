@@ -23,7 +23,16 @@ service.AddProductToInventory(new Product()
     PurchaseDate = DateTime.Now
 });
 
-service.Register("Dimitris", "1234");
+try 
+{ 
+    service.Register("Dimitris", "1234");
+}
+catch ( Exception e)
+{
+    Console.WriteLine(e.Message);
+    return;
+}
+
 
 int loginId = service.Login("Dimitris", "1234");
 

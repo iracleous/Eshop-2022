@@ -10,7 +10,9 @@ namespace Eshop_2022.Repositories
     public abstract class Repository<T> : IRepository<T> where T : Entity
     {
         private readonly List<T> _list = new ();
-        private int Index = 0;
+        private int Index;
+
+
 
         public int Create(T t)
         {
