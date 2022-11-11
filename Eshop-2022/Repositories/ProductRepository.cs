@@ -9,35 +9,55 @@ namespace Eshop_2022.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly List<Product> _products
-             = new List<Product>();
+        private readonly List<Product> _products = new ();
+        private int ProductIndex = 0;
+
 
         public int CreateProduct(Product product)
         {
-            Console.WriteLine("The product has been added");
+            product.Id = ProductIndex;
+            ProductIndex++;
             _products.Add(product);
-            return 0;
+            return product.Id;
         }
 
         public Product CreateProduct(int productId, string name, decimal price, DateTime purchaseDate)
         {
-            return null;
+           var product = new Product() { Id = productId, Name = name, Price = price,
+               PurchaseDate = purchaseDate };
+            CreateProduct(product);
+            return product;
         }
 
         public bool DeleteProduct(int productId)
-        {/* to do -> possible run time error */
-            _products.Remove(ReadProductId(productId));
-            return true;
+        {  
+            Product? product= ReadProductId(productId);
+            if (product != null) {  
+                _products.Remove(product);
+                return true;
+            }
+           return false;
         }
 
-        public Product ReadProductId(int productId)
+        public Product? ReadProductId(int productId)
         {
-            throw new NotImplementedException();
+            foreach(Product product in _products)
+            {
+                if (product.Id == productId)
+                    return product;
+            }
+            return null;
         }
 
         public bool UpdateProduct(int productId, decimal newPrice)
         {
-            throw new NotImplementedException();
+            Product? product = ReadProductId(productId);
+            if (product != null)
+            {
+                product.Price = newPrice;
+                return true;
+            }
+            return false;    
         }
     }
 }
