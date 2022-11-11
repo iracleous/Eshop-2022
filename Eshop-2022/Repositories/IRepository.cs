@@ -10,7 +10,6 @@ namespace Eshop_2022.Repositories
     public interface IRepository<T> where T : Entity
     {
         //CRUD create read update delete
-
         public int Create(T t);
         public T? Read(int id);
         public List<T> Read();
@@ -18,7 +17,4 @@ namespace Eshop_2022.Repositories
         public bool Delete(int id);   
 
     }
-    
-
-
 }

@@ -83,10 +83,14 @@ namespace Eshop_2022.Services
             {
                 decimal totalCost = 0m;
                 int productCount = 0;
-                foreach(Product product in order.Products){
-                    productCount++;
-                    totalCost += product.Price;
-                }
+
+                totalCost = order.Products.Sum(product => product.Price);
+                productCount = order.Products.Count();
+
+                //foreach (Product product in order.Products){
+                //    productCount++;
+                //    totalCost += product.Price;
+                //}
                 System.Console.WriteLine($"total cost = {totalCost} " +
                     $"product count = {productCount}");
             }
