@@ -40,6 +40,7 @@ namespace Eshop_2022.Services
 
             var order = new Order() { Created= DateTime.Now, Customer=customer2   };
             _context.Orders.Add(order);
+            _context.SaveChanges();
             return order.Id;    
         }
 

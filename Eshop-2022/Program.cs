@@ -7,7 +7,7 @@ Console.WriteLine("My eshop application starts");
 
  
 
-IMarketService service = new MarketService();
+IMarketService service = new DBMarketService();
 
 service.AddProductToInventory(new Product()
     {

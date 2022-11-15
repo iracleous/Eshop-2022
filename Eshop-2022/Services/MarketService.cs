@@ -69,7 +69,7 @@ namespace Eshop_2022.Services
         {
             Order? order = orderRepository.Read(orderId);
             Product? product = productRepository.Read(productId);
-            if( order!= null && product != null)
+            if( order!= null && product != null && order.Products != null)
             {
                 order.Products.Add(product);
                 return true;

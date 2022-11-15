@@ -8,16 +8,18 @@ using System.Threading.Tasks;
 
 namespace Eshop_2022.EshopDbContext
 {
-    public class ShopDbContext: DbContext
+    public class ShopDbContext : DbContext
     {
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
+        public DbSet<Order>? Orders { get; set; }
+        public DbSet<Product>? Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=(local);Initial Catalog=Eshop-Regen-2022;User Id=sa; Password=passw0rd";
+            // string connectionString = "Data Source=(local);Initial Catalog=Eshop-Regen-2022;User Id=sa; Password=passw0rd";
+            string connectionString = "Data Source=localhost;Initial Catalog=Eshop-Regen-2022;Integrated Security = true;";
             optionsBuilder.UseSqlServer(connectionString);
         }
+
     }
 }
