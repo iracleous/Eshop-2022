@@ -11,5 +11,7 @@ namespace Eshop_2022.Models
         public string? Name { get; set; }
         public DateTime PurchaseDate  { get; set; }
         public decimal Price { get; set; }
+
+        public List<Order> Orders { get; set; } = new List<Order>();
     }
 }

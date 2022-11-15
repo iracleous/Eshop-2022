@@ -8,8 +8,10 @@ namespace Eshop_2022.Models
 {
     public class Order:Entity
     {   
-        public Customer? Customer { get; set; }
-        public List<Product>? Products { get; set; }
         public DateTime? Created { get; set; }
+
+        public Customer? Customer { get; set; }
+        public List<Product>? Products { get; set; } = new List<Product> { };
+       
     }
 }
