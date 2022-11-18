@@ -23,3 +23,17 @@ namespace Eshop_2022.EshopDbContext
 
     }
 }
+
+
+/*
+ * 
+add-migration
+update-database
+
+
+ Scaffold-DbContext "Data Source=localhost;Initial Catalog=Eshop-Regen-2022;Integrated Security = true" Microsoft.EntityFrameworkCore.SqlServer -o Model
+
+
+
+ *
+ */
